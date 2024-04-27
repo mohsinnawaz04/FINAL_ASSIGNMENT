@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { UseProducts } from "../lib/context/productsContext";
 import { Link } from "react-router-dom";
+import ProductCardData from "./ProductCardData";
 
 const ProductCard = ({ isHome = false }) => {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const productsState = UseProducts();
 
   const getData = async () => {
@@ -13,6 +15,8 @@ const ProductCard = ({ isHome = false }) => {
       sliceProducts();
     } catch (error) {
       console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -28,7 +32,7 @@ const ProductCard = ({ isHome = false }) => {
 
   return (
     <>
-      {products?.map((products, idx) => (
+      {/* {products?.map((products, idx) => (
         <div key={idx}>
           {isHome ? (
             <Link to={`products/${products.id}`}>
@@ -53,7 +57,7 @@ const ProductCard = ({ isHome = false }) => {
           ) : (
             <Link to={`${products.id}`} key={idx}>
               <div
-                className="flex flex-col border px-5 py-3 bg-gray-200"
+                className="flex flex-col border px-5 py-3 bg-red-200"
                 id={products.id}
               >
                 <div className="max-w-[10rem] min-w-[10rem] overflow-hidden border-[5px]">
@@ -72,7 +76,26 @@ const ProductCard = ({ isHome = false }) => {
             </Link>
           )}
         </div>
-      ))}
+      ))} */}
+      {isLoading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <>
+          {isHome ? (
+            <>
+              {products.map((product, idx) => (
+                <ProductCardData key={idx} product={product} home={isHome} />
+              ))}
+            </>
+          ) : (
+            <>
+              {products.map((product, idx) => (
+                <ProductCardData key={idx} product={product} home={isHome} />
+              ))}
+            </>
+          )}
+        </>
+      )}
     </>
   );
 };

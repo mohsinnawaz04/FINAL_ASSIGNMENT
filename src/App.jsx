@@ -8,7 +8,6 @@ import {
 import MainLayout from "./layouts/MainLayout";
 import HomePage from "./pages/HomePage";
 import Products from "./pages/Products";
-import ProductAdd from "../trash/ProductAdd";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import AdminDashboard from "./components/AdminDashboard";
 
@@ -18,7 +17,6 @@ const App = () => {
       <Route path="" element={<MainLayout />}>
         <Route index element={<HomePage />} />
         <Route path="products" element={<Products />} />
-        <Route path="products/add-product" element={<ProductAdd />} />
         <Route path="products/:id" element={<ProductDetailPage />} />
         <Route path="admin" element={<AdminDashboard />} />
       </Route>

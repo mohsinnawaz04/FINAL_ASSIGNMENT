@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/dialog";
 
 import EditFormComponent from "./EditProductForm";
+import { MdOutlineStarPurple500 } from "react-icons/md";
+import CartSvgComponent from "./CartSvgComponent";
 
 const ProductDetail = () => {
   const [productDetail, setProductDetail] = useState([]);
@@ -36,26 +38,54 @@ const ProductDetail = () => {
 
   return (
     <>
-      <div className="border-4 w-fit p-5 px-10 m-5">
-        {productDetail.length > 0
-          ? productDetail.map((prod) => (
-              <div key={prod.id}>
+      {/* <div className="border-4 w-fit p-5 px-10 m-5">
+        {productDetail.map((prod) => (
+          <div key={prod.id}>
+            <img
+              src={prod.imageUrl}
+              alt={prod.name}
+              width="150px"
+              loading="lazy"
+            />
+            <h1>{prod.name}</h1>
+            <h1>{prod.price}</h1>
+            <h1>{prod.description}</h1>
+          </div>
+        ))}
+      </div> */}
+
+      {productDetail.map((product, idx) => (
+        <div key={idx} className="w-full pt-5">
+          <div className="border-2 m-2 my-3 mx-auto lg:my-5 sm:px-0 md:max-w-[40rem] md:min-h-[22rem] rounded-3xl shadow-md hover:scale-105 transition-all ease-linear">
+            <div className="image relative p-2 px-5">
+              <div className="w-full h-[20rem] overflow-hidden rounded-2xl">
                 <img
-                  src={prod.imageUrl}
-                  alt={prod.name}
-                  width="150px"
-                  loading="lazy"
+                  src={product.imageUrl}
+                  alt={product.name}
+                  className="object-cover w-full"
                 />
-                <h1>{prod.name}</h1>
-                <h1>{prod.price}</h1>
-                <h1>{prod.description}</h1>
               </div>
-            ))
-          : ""}
-      </div>
-      <Button onClick={openDialog} className="m-5 px-8 p-5">
-        Edit Product
-      </Button>
+            </div>
+
+            <div className="ProductName px-2 pr-10 flex items-center justify-between ">
+              <p className="font-semibold text-lg m-2">{product.name}</p>
+              <p className="font-semibold text-base m-2">${product.price}</p>
+            </div>
+
+            <div className="Price mb-3 mt-2 w-[90%] mx-auto ">
+              <div>
+                <button className="py-2 my-2 w-[100%] rounded-sm bg-indigo-600 text-white text-sm font-semibold">
+                  Buy Now
+                </button>
+                <Button onClick={openDialog} className="py-2 my-2 w-[100%]">
+                  Edit Product
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+
       <Dialog open={isOpen} onOpenChange={closeDialog}>
         <DialogContent className="sm:max-w-[525px]">
           <DialogHeader>
