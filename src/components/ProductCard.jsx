@@ -9,11 +9,16 @@ const ProductCard = ({ isHome = false }) => {
   const getData = async () => {
     try {
       const data = await productsState.current;
-
-      if (data.length > 0) setProducts(data);
+      setProducts(data);
+      sliceProducts();
     } catch (error) {
       console.error("Error fetching data:", error);
     }
+  };
+
+  const sliceProducts = () => {
+    if (isHome) setProducts((prevProducts) => prevProducts.slice(0, 6));
+    console.log(products);
   };
 
   useEffect(() => {
@@ -33,14 +38,14 @@ const ProductCard = ({ isHome = false }) => {
               >
                 <div className="max-w-[10rem] min-w-[10rem] overflow-hidden border-[5px]">
                   <img
-                    src={products.ProductImg}
-                    alt={products.productName}
+                    src={products.imageUrl}
+                    alt={products.name}
                     className="object-cover"
                   />
                 </div>
                 <ol>
-                  <li>{products.ProductName}</li>
-                  <li>{products.ProductPrice}</li>
+                  <li>{products.name}</li>
+                  <li>{products.price}</li>
                 </ol>
                 <br />
               </div>
@@ -53,14 +58,14 @@ const ProductCard = ({ isHome = false }) => {
               >
                 <div className="max-w-[10rem] min-w-[10rem] overflow-hidden border-[5px]">
                   <img
-                    src={products.ProductImg}
+                    src={products.imageUrl}
                     alt={products.productName}
                     className="object-cover"
                   />
                 </div>
                 <ol>
-                  <li>{products.ProductName}</li>
-                  <li>{products.ProductPrice}</li>
+                  <li>{products.name}</li>
+                  <li>{products.price}</li>
                 </ol>
                 <br />
               </div>

@@ -1,42 +1,74 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getProductByID } from "../lib/productService";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+
+import EditFormComponent from "./EditProductForm";
 
 const ProductDetail = () => {
   const [productDetail, setProductDetail] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+
   const { id } = useParams();
-  const navigate = useNavigate();
+
+  const openDialog = () => {
+    console.log("opened");
+    setIsOpen(true);
+  };
+
+  const closeDialog = () => {
+    setIsOpen(false);
+    console.log("dialog has been closed");
+  };
 
   useEffect(() => {
     const getDetail = async () => {
       await getProductByID(id, productDetail, setProductDetail);
     };
     getDetail();
-  }, []);
+  }, [productDetail]);
 
   return (
-    <div>
-      {productDetail.length > 0
-        ? productDetail.map((prod) => (
-            <div key={prod.id}>
-              <img
-                src={prod.ProductImg}
-                alt={prod.productName}
-                width="150px"
-                loading="lazy"
-              />
-              <h1>{prod.ProductName}</h1>
-              <h1>{prod.ProductPrice}</h1>
-            </div>
-          ))
-        : ""}
-      <button
-        className="px-3 py-2 mt-5  bg-zinc-900 text-white"
-        onClick={() => navigate(`/products/edit-product/${id}`)}
-      >
+    <>
+      <div className="border-4 w-fit p-5 px-10 m-5">
+        {productDetail.length > 0
+          ? productDetail.map((prod) => (
+              <div key={prod.id}>
+                <img
+                  src={prod.imageUrl}
+                  alt={prod.name}
+                  width="150px"
+                  loading="lazy"
+                />
+                <h1>{prod.name}</h1>
+                <h1>{prod.price}</h1>
+                <h1>{prod.description}</h1>
+              </div>
+            ))
+          : ""}
+      </div>
+      <Button onClick={openDialog} className="m-5 px-8 p-5">
         Edit Product
-      </button>
-    </div>
+      </Button>
+      <Dialog open={isOpen} onOpenChange={closeDialog}>
+        <DialogContent className="sm:max-w-[525px]">
+          <DialogHeader>
+            <DialogTitle>Edit Product</DialogTitle>
+          </DialogHeader>
+          <EditFormComponent
+            close={closeDialog}
+            product={productDetail}
+            id={id}
+          />
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 

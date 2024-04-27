@@ -8,10 +8,9 @@ import {
 import MainLayout from "./layouts/MainLayout";
 import HomePage from "./pages/HomePage";
 import Products from "./pages/Products";
-import Contact from "./pages/Contact";
-import ProductAdd from "./pages/ProductAdd";
+import ProductAdd from "../trash/ProductAdd";
 import ProductDetailPage from "./pages/ProductDetailPage";
-import ProductEditPage from "./pages/ProductEditPage";
+import AdminDashboard from "./components/AdminDashboard";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -21,8 +20,7 @@ const App = () => {
         <Route path="products" element={<Products />} />
         <Route path="products/add-product" element={<ProductAdd />} />
         <Route path="products/:id" element={<ProductDetailPage />} />
-        <Route path="products/edit-product/:id" element={<ProductEditPage />} />
-        <Route path="contact" element={<Contact />} />
+        <Route path="admin" element={<AdminDashboard />} />
       </Route>
     )
   );

@@ -1,6 +1,7 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Form, Input, InputNumber, Upload } from "antd";
-import { addProduct } from "../lib/productService";
+import { addProduct } from "../src/lib/productService";
+import { useState } from "react";
 
 const normFile = (e) => {
   if (Array.isArray(e)) {
@@ -20,8 +21,10 @@ const formItemLayout = {
     maxWidth: 600,
   },
 };
+
 export const FormDemo = () => {
   const [form] = Form.useForm();
+  const [products, setProducts] = useState([]);
 
   const onFinish = (values) => {
     console.log("Received values of form: ", values);

@@ -8,6 +8,7 @@ import {
   updateDoc,
   where,
   query,
+  onSnapshot,
 } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
@@ -88,18 +89,34 @@ export const ProductsProvider = (props) => {
     await deleteDoc(doc(db, "Products", "hbTwlzPR32Mmq5xfH175"));
   };
 
-  async function init() {
-    try {
-      const querySnapshot = await getDocs(collection(db, "Products"));
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
+  function init() {
+    const productsCollection = collection(db, "Products");
 
-        setProducts((prev) => [...prev, data]);
+    const unsubscribe = onSnapshot(productsCollection, (snapshot) => {
+      const updatedProducts = [];
+      snapshot.forEach((doc) => {
+        updatedProducts.push({ id: doc.id, ...doc.data() });
       });
-      // console.log("init function chal gaya hai", products);
-    } catch (err) {
-      setProducts([]);
-    }
+
+      setProducts(updatedProducts);
+
+      // snapshot.docChanges().forEach((change) => {
+      //   if (change.type === "added") {
+      //     // Handle document addition
+      //     console.log("New document:", change.doc.data());
+      //   }
+      //   if (change.type === "modified") {
+      //     // Handle document modification
+      //     console.log("Modified document:", change.doc.data());
+      //   }
+      //   if (change.type === "removed") {
+      //     // Handle document removal
+      //     console.log("Removed document:", change.doc.data());
+      //   }
+      // });
+    });
+
+    console.log("init function chal gaya hai", products);
   }
 
   useEffect(() => {

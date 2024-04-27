@@ -3,20 +3,6 @@ import ProductCard from "../components/ProductCard";
 import { Link } from "react-router-dom";
 
 const Products = ({ isHome = false }) => {
-  const [products, setproducts] = useState([]);
-
-  const sliceProducts = () => {
-    if (isHome) {
-      setproducts((prevProducts) => prevProducts.slice(0, 8));
-    } else {
-      return;
-    }
-  };
-
-  useEffect(() => {
-    sliceProducts();
-  }, []);
-
   return (
     <>
       <div className="flex flex-wrap justify-center lg:justify-start lg:items-center lg:px-28 pt-5 lg:pt-10">
