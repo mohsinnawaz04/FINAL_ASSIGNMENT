@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getProductByID } from "../lib/productService";
+import { getProductByID } from "../src/lib/productService";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Form, Input, InputNumber, Upload } from "antd";
-import { addProduct } from "../lib/productService";
+import { addProduct } from "../src/lib/productService";
 
 const normFile = (e) => {
   if (Array.isArray(e)) {

@@ -35,15 +35,15 @@ const FormComponent = ({ close }) => {
     // Your add Product funtion goes here and depending on time it takes to add product data to backend the modal state goes into loading.
     // Note that it also has a prop "close". this is to close the modal. once the modal is closed that data will be cleared.
 
-    // setTimeout(() => {
-    //   setIsLoading(false);
-    //   toast({
-    //     description: "Product has been added",
-    //   });
-    //   close();
-    // }, [2000]);
+    setTimeout(() => {
+      setIsLoading(false);
+      toast({
+        description: "Product has been added",
+      });
+      close();
+    }, [2000]);
 
-    addProduct(setIsLoading, formData, imageName, close, showToast);
+    // addProduct(setIsLoading, formData, imageName, close, showToast);
   };
 
   const showToast = () => {

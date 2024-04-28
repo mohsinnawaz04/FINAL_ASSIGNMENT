@@ -3,6 +3,7 @@ import { UseProducts } from "../lib/context/productsContext";
 import { DialogDemo } from "./DialogComponent";
 // import ToastComponent from "./ToastComponent";
 import { deleteProduct } from "@/lib/productService";
+import { toast } from "@/components/ui/use-toast";
 
 const Table = () => {
   const productContext = UseProducts();
@@ -24,10 +25,18 @@ const Table = () => {
     }
   };
 
-  const handleDelete = async (id) => {
-    await deleteProduct(id);
-    console.log("product has been deleted");
-  };
+  setTimeout(() => {
+    setIsLoading(false);
+    toast({
+      description: "Product has been deleted",
+    });
+    close();
+  }, [2000]);
+
+  // const handleDelete = async (id) => {
+  //   await deleteProduct(id);
+  //   console.log("product has been deleted");
+  // };
 
   useEffect(() => {
     getData();

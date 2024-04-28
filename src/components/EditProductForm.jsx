@@ -33,13 +33,13 @@ const EditFormComponent = ({ close, product, id }) => {
     // Your add Product funtion goes here and depending on time it takes to add product data to backend the modal state goes into loading.
     // Note that it also has a prop "close". this is to close the modal. once the modal is closed that data will be cleared.
 
-    // setTimeout(() => {
-    //   setIsLoading(false);
-    //   showToast();
-    //   close();
-    // }, [500]);
+    setTimeout(() => {
+      setIsLoading(false);
+      showToast();
+      close();
+    }, [3000]);
 
-    updateProduct(id, setIsLoading, formData, imageName, close, showToast);
+    // updateProduct(id, setIsLoading, formData, imageName, close, showToast);
   };
 
   const showToast = () => {
