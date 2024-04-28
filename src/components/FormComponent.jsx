@@ -41,7 +41,7 @@ const FormComponent = ({ close }) => {
         description: "Product has been added",
       });
       close();
-    }, [2000]);
+    }, [1000]);
 
     // addProduct(setIsLoading, formData, imageName, close, showToast);
   };

@@ -37,7 +37,7 @@ const EditFormComponent = ({ close, product, id }) => {
       setIsLoading(false);
       showToast();
       close();
-    }, [3000]);
+    }, [1000]);
 
     // updateProduct(id, setIsLoading, formData, imageName, close, showToast);
   };
@@ -103,7 +103,7 @@ const EditFormComponent = ({ close, product, id }) => {
           <LoadingButton />
         ) : (
           <Button type="submit" variant="ghost">
-            Add Product
+            Update Product
           </Button>
         )}
       </DialogFooter>

@@ -25,13 +25,14 @@ const Table = () => {
     }
   };
 
-  setTimeout(() => {
-    setIsLoading(false);
-    toast({
-      description: "Product has been deleted",
-    });
-    close();
-  }, [2000]);
+  const handleDelete = (id) => {
+    setTimeout(() => {
+      setIsLoading(false);
+      toast({
+        description: "Product has been deleted",
+      });
+    }, [700]);
+  };
 
   // const handleDelete = async (id) => {
   //   await deleteProduct(id);
