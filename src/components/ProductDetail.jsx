@@ -32,7 +32,8 @@ const ProductDetail = () => {
       await getProductByID(id, productDetail, setProductDetail);
     };
     getDetail();
-  }, [productDetail]);
+    console.log("use effect in motion at product detail page");
+  }, []);
 
   return (
     <>
