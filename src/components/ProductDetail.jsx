@@ -10,8 +10,6 @@ import {
 } from "@/components/ui/dialog";
 
 import EditFormComponent from "./EditProductForm";
-import { MdOutlineStarPurple500 } from "react-icons/md";
-import CartSvgComponent from "./CartSvgComponent";
 
 const ProductDetail = () => {
   const [productDetail, setProductDetail] = useState([]);

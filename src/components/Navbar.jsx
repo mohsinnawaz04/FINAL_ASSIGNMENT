@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
+import MobileNavbar from "./MobileNavbar";
 // import MobileNavbar from "./MobileNavbar";
 
 const Navbar = () => {
@@ -27,7 +28,9 @@ const Navbar = () => {
 
       {/* Mobile Nav */}
 
-      <nav className="sm:hidden">{/* <MobileNavbar /> */}</nav>
+      <nav className="sm:hidden">
+        <MobileNavbar />
+      </nav>
     </>
   );
 };

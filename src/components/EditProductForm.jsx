@@ -44,7 +44,7 @@ const EditFormComponent = ({ close, product, id }) => {
 
   const showToast = () => {
     toast({
-      description: "Product has been updated",
+      description: "Product has been updated!",
     });
   };
 

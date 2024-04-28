@@ -29,7 +29,7 @@ const Table = () => {
     setTimeout(() => {
       setIsLoading(false);
       toast({
-        description: "Product has been deleted",
+        description: "Product has been deleted!",
       });
     }, [700]);
   };

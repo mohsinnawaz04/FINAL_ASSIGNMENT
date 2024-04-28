@@ -37,9 +37,7 @@ const FormComponent = ({ close }) => {
 
     setTimeout(() => {
       setIsLoading(false);
-      toast({
-        description: "Product has been added",
-      });
+      showToast();
       close();
     }, [1000]);
 
@@ -48,7 +46,7 @@ const FormComponent = ({ close }) => {
 
   const showToast = () => {
     toast({
-      description: "product has been added",
+      description: "Product has been added!",
     });
   };
 
